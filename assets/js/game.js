@@ -9,7 +9,7 @@ var randomNumber = function(min, max) {
 
 var fightOrSkip = function() {
   //ask player if they'd like to fight or skip using fightOrSkip function
-  var promptFight = window.prompt('Would tou like to FIGHT or SKIP this battle? Enter "FIGHT" of "SKIP" to choose.');
+  var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" of "SKIP" to choose.');
 
   //Conditional Recursive Function Call
   if (promptFight === "" || promptFight === null) {
@@ -18,7 +18,7 @@ var fightOrSkip = function() {
   }
 
   //if player picks "skip" confirm and then stop the loop
-  if (promptFight === "skip") {
+  if (promptFight.toLowerCase() === "skip") {
     //confirm player wants to skip
     var confirmSkip = window.confirm("Are you sure you'd like to quit?");
 
@@ -152,28 +152,24 @@ var endGame = function() {
 var shop = function() {
   // ask player what they'd like to do
   var shopOptionPrompt = window.prompt(
-    'Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one "REFILL", "UPGRADE", or "LEAVE" to make a choice.'
+    'Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE.'
   );
+
+  shopOptionPrompt = parseInt(shopOptionPrompt);
 
   // use switch case to carry out action
   switch (shopOptionPrompt) {
-    case 'REFILL':
-    case 'refill':
+    case 1:
       playerInfo.refillHealth();
       break;
-    case 'UPGRADE':
-    case 'upgrade':
+    case 2:
       playerInfo.upgradeAttack();
       break;
-    case 'LEAVE':
-    case 'leave':
+    case 3:
       window.alert('Leaving the store.');
-
-      // do nothing, so function will end
       break;
     default:
       window.alert('You did not pick a valid option. Try again.');
-
       // call shop() again to force player to pick a valid option
       shop();
       break;
